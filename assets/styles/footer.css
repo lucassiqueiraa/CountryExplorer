@@ -12,8 +12,8 @@ body {
 
 /* Footer Styling */
 footer {
-    background-color: #343a40; /* Cor de fundo do footer */
-    color: white;
+    background-color: #f4f4f4; /* Cor de fundo do footer (cinza claro) */
+    color: #333; /* Cor do texto em um tom escuro para contraste */
     padding-top: 30px;
     padding-bottom: 30px;
     margin-top: auto; /* Garante que o footer vá para o fundo */
@@ -44,7 +44,7 @@ footer hr {
 /* Ajustes para os ícones das redes sociais */
 footer .social-links a {
     margin: 0 10px;
-    color: white;
+    color: #333; /* Cor das redes sociais (escuro para visibilidade) */
 }
 
 footer .social-links a:hover {
