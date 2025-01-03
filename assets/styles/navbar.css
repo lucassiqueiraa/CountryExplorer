@@ -7,7 +7,7 @@ body {
 
 /*Estidos da Navbar*/
 nav{
-    background-color: #333;
+    background-color: #fffefe;
     padding: 10px 20px;
 }
 nav ul{
@@ -27,7 +27,7 @@ nav ul li a{
     transition: background 0.3s ease;
 }
 nav ul li a:hover{
-    background-color: #555;
+    background-color: #ea0e0e;
     border-radius: 5px;
 }
 
