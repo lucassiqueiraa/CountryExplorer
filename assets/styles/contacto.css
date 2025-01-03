@@ -1,0 +1,11 @@
+/* Garante que a página tenha altura mínima de 100% da tela */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+}
+
+/* O conteúdo da página deve ocupar o espaço disponível até o footer */
+.container {
+    flex: 1; /* Isso faz o conteúdo ocupar o espaço restante */
+}

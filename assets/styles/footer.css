@@ -1,0 +1,52 @@
+/* Garante que a página ocupe toda a altura da tela */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Faz a altura mínima da página ser 100% da altura da tela */
+}
+
+/* O conteúdo da página deve ocupar o espaço disponível até o footer */
+.container {
+    flex: 1; /* Faz o conteúdo ocupar o espaço restante */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40; /* Cor de fundo do footer */
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: auto; /* Garante que o footer vá para o fundo */
+}
+
+/* Links do footer */
+footer a {
+    text-decoration: none;
+    color: #161212;
+}
+
+footer a:hover {
+    color: #147adf; /* Cor ao passar o mouse */
+}
+
+footer .container {
+    max-width: 1200px;
+}
+
+/* Linha de separação */
+footer hr {
+    border-top: 1px solid #0c0101;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Ajustes para os ícones das redes sociais */
+footer .social-links a {
+    margin: 0 10px;
+    color: white;
+}
+
+footer .social-links a:hover {
+    color: #147adf;
+}
