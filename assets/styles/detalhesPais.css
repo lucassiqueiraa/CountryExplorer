@@ -1,0 +1,75 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Estilo geral da tabela */
+.tabelaDetalhes {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Cor de fundo leve */
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho da tabela */
+.tabelaDetalhes  th {
+  background-color: #007bff; /* Azul claro */
+  color: white;
+  padding: 12px 15px;
+  font-size: 16px;
+  
+  text-align: center;
+}
+
+/* Corpo da tabela */
+.tabelaDetalhes  td {
+  text-align: center;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Efeito de hover nas linhas da tabela */
+.tabelaDetalhes  tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+
+/* Linhas alternadas */
+.tabelaDetalhes  tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Cor de fundo mais clara nas linhas ímpares */
+}
+
+/* Adicionando uma borda fina à tabela */
+.tabelaDetalhes  {
+  border: 1px solid #ddd;
+}
+
+/* Melhorando o aspecto da imagem da bandeira */
+.tabelaDetalhes  img {
+  width: 20%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Estilo de um ícone ao lado do texto */
+.tabelaDetalhes  th i, .table td i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+h1{
+  text-align: center;
+}
+
+
+.container {
+  max-width: 800px;
+  margin-top: 30px;
+  
+}
