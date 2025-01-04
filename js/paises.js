@@ -35,7 +35,7 @@ $(document).ready(function () {
         countriesList.empty(); // Limpa a lista de países
 
         countriesToRender.forEach(function (country) {
-            const isFavorite = favorites.includes(country.code);
+            const isFavorite = isCountryFavorite(country.code); // Verifica se o país está nos favoritos
             const buttonClass = isFavorite ? 'active' : '';
             const countryElement = `
                 <div class="col-md-4 col-sm-6">
@@ -64,62 +64,42 @@ $(document).ready(function () {
         });
     }
 
+    // Função para verificar se o país já está nos favoritos
+    function isCountryFavorite(countryCode) {
+        return favorites.includes(countryCode);
+    }
+
     // Função para alternar entre adicionar e remover de favoritos
     function toggleFavorite(event) {
         const countryCode = $(event.target).data('country-code');
-        
-        if (favorites.includes(countryCode)) {
-            favorites = favorites.filter(function (code) {
-                return code !== countryCode;
-            });
+        if (isCountryFavorite(countryCode)) {
+            removeFavorite(countryCode);
         } else {
-            favorites.push(countryCode);
+            addFavorite(countryCode);
         }
 
-        // Atualiza os favoritos no localStorage
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-
-        // Re-renderiza a lista de países e favoritos
+        // Re-renderiza a lista de países após modificar os favoritos
         renderCountries(countries);
-        renderFavorites();
+        
     }
 
-    // Função para renderizar os países favoritos
-    function renderFavorites() {
-        const favoritesList = $("#favorites-list");
-        favoritesList.empty();
-
-        const favoriteCountries = countries.filter(function (country) {
-            return favorites.includes(country.code);
-        });
-
-        favoriteCountries.forEach(function (country) {
-            const favoriteElement = `
-                <div class="col-md-4 col-sm-6 mb-4">
-                    <div class="card country-card">
-                        <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
-                        <div class="card-body">
-                            <h5 class="card-title">${country.name}</h5>
-                            <p><strong>Capital:</strong> ${country.capital}</p>
-                            <p><strong>População:</strong> ${country.population}</p>
-                            <p><strong>Região:</strong> ${country.region}</p>
-                            <p><strong>Idioma:</strong> ${country.language}</p>
-                            <p><strong>Moeda:</strong> ${country.currency}</p>
-                            <button class="btn favorite-btn btn-danger" data-country-code="${country.code}">
-                                Remover dos Favoritos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            favoritesList.append(favoriteElement);
-        });
-
-        // Adiciona o evento de clique para remover dos favoritos
-        $(".favorite-btn").each(function () {
-            $(this).on("click", toggleFavorite);
-        });
+    // Função para adicionar um país aos favoritos
+    function addFavorite(countryCode) {
+        if (!isCountryFavorite(countryCode)) {
+            favorites.push(countryCode); // Adiciona o código do país
+            localStorage.setItem("favorites", JSON.stringify(favorites)); // Atualiza no localStorage
+        }
     }
+
+    // Função para remover um país dos favoritos utilizando splice
+    function removeFavorite(countryCode) {
+        const index = favorites.indexOf(countryCode);
+        if (index !== -1) {
+            favorites.splice(index, 1); // Remove o item do array usando splice
+            localStorage.setItem("favorites", JSON.stringify(favorites)); // Atualiza no localStorage
+        }
+    }
+
 
     // Função de filtro da pesquisa
     function filterCountries(event) {
@@ -133,9 +113,7 @@ $(document).ready(function () {
     // Inicializa a renderização dos países
     loadCountries();
 
-    // Re-renderiza os favoritos
-    renderFavorites();
-
+   
     // Evento de busca
     $("#search-input").on('input', filterCountries);
 });
