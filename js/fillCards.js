@@ -38,7 +38,7 @@ $(document).ready(function () {
                         <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
                         <div class="card-body">
                             <h5 class="card-title">${country.name}</h5>
-                           <button class="btn ${buttonClass} ${isFavorite ? 'btn-danger' : 'btn-success'}" data-country-code="${country.code}">
+                            <button class="btn favorite-btn ${buttonClass} ${isFavorite ? 'btn-danger' : 'btn-success'}" data-country-code="${country.code}">
                                 ${isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
                             </button>
                         </div>
@@ -57,6 +57,7 @@ $(document).ready(function () {
     // Função para alternar entre adicionar e remover de favoritos
     function toggleFavorite(event) {
         const countryCode = $(event.target).data('country-code');
+        
         if (favorites.includes(countryCode)) {
             favorites = favorites.filter(function (code) {
                 return code !== countryCode;
@@ -84,16 +85,24 @@ $(document).ready(function () {
 
         favoriteCountries.forEach(function (country) {
             const favoriteElement = `
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card country-card">
                         <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
                         <div class="card-body">
                             <h5 class="card-title">${country.name}</h5>
+                            <button class="btn favorite-btn btn-danger" data-country-code="${country.code}">
+                                Remover dos Favoritos
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
             favoritesList.append(favoriteElement);
+        });
+
+        // Adiciona o evento de clique para remover dos favoritos
+        $(".favorite-btn").each(function () {
+            $(this).on("click", toggleFavorite);
         });
     }
 
