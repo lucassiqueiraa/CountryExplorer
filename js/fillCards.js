@@ -1,3 +1,4 @@
+/*
 const countries = ["deutschland", "france", "italy", "brazil", "portugal", "spain"]; // Lista de países
 const cardsContainer = document.getElementById("cards-container");
 
@@ -45,3 +46,77 @@ countries.forEach(country => {
 
     xhr.send();
 });
+*/
+$(document).ready(function() {
+    
+    // Requisição para obter todos os países da API
+    const apiUrl = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags';
+  
+    // Função para preencher os cards com base na pesquisa
+    function fillCards(countries) {
+      const cardsContainer = $('#cards-container');
+      cardsContainer.empty(); // Limpa os cards existentes
+  
+      if (countries.length === 0) {
+        cardsContainer.append('<p>Nenhum país encontrado.</p>');
+      } else {
+        countries.forEach(country => {
+          const card = `
+            <div class="col">
+              <div class="card h-100">
+                <img src="${country.flags.png}" class="card-img-top" alt="Flag of ${country.name.official}">
+                <div class="card-body">
+                  <h5 class="card-title">${country.name.official}</h5>
+                  <p class="card-text">Capital: ${country.capital ? country.capital[0] : 'N/A'}</p>
+                  <p class="card-text">Moeda: ${country.currencies ? Object.values(country.currencies)[0].name : 'N/A'}</p>
+                </div>
+              </div>
+            </div>
+          `;
+          cardsContainer.append(card);
+        });
+      }
+    }
+  
+    // Função para buscar os países na API
+    function searchInAPI(query) {
+      console.log("Buscando países para a pesquisa:", query); // Log de depuração
+  
+      $.ajax({
+        url: apiUrl,
+        method: 'GET',
+        success: function(data) {
+          console.log("Dados recebidos da API:", data); // Log para verificar se os dados estão chegando
+  
+          // Filtra os dados da API com base na pesquisa
+          const filteredCountries = data.filter(country => {
+            const nameMatch = country.name.official.toLowerCase().includes(query);
+            const capitalMatch = country.capital && country.capital[0].toLowerCase().includes(query);
+            const currencyMatch = country.currencies && Object.values(country.currencies)[0].name.toLowerCase().includes(query);
+            return nameMatch || capitalMatch || currencyMatch;
+          });
+  
+          fillCards(filteredCountries); // Preenche os cards com os dados filtrados
+        },
+        error: function(xhr, status, error) {
+          console.error("Erro na requisição:", status, error); // Log de erro
+          alert('Erro ao buscar na API.');
+        }
+      });
+    }
+  
+    // Evento do formulário de pesquisa
+    $('#search').on('input', function() {
+      const query = $(this).val().trim().toLowerCase();
+  
+      // Se o campo de pesquisa estiver vazio, exibe todos os países da API
+      if (query === '') {
+        searchInAPI('');
+      } else {
+        searchInAPI(query);
+      }
+    });
+  
+    // Inicializa a busca com todos os países da API ao carregar a página
+    searchInAPI('');
+  });
