@@ -1,7 +1,18 @@
-/*
 const countries = ["deutschland", "france", "italy", "brazil", "portugal", "spain"]; // Lista de países
 const cardsContainer = document.getElementById("cards-container");
 
+// Função para salvar os favoritos no localStorage
+function saveFavorites(favorites) {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+// Função para obter os favoritos do localStorage
+function getFavorites() {
+    const favorites = localStorage.getItem('favorites');
+    return favorites ? JSON.parse(favorites) : [];
+}
+
+// Preenche os cards com os dados dos países
 countries.forEach(country => {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", `https://restcountries.com/v3.1/name/${country}`, true);
@@ -27,6 +38,10 @@ countries.forEach(country => {
                                 Região: ${countryData.region}<br>
                                 Moeda: ${currencyName} (${currencyCode})
                             </p>
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" id="checkbox-${countryData.name.common}">
+                                Favoritar
+                            </label>
                         </div>
                         <div class="card-footer">
                             <small class="text-body-secondary">População: ${countryData.population.toLocaleString()}</small>
@@ -35,6 +50,28 @@ countries.forEach(country => {
                 </div>
             `;
             cardsContainer.innerHTML += cardHTML;
+
+            // Configuração do checkbox
+            const checkbox = document.getElementById(`checkbox-${countryData.name.common}`);
+            
+            // Verifica se o país já está nos favoritos
+            const favorites = getFavorites();
+            if (favorites.includes(countryData.name.common)) {
+                checkbox.checked = true;
+            }
+
+            // Adiciona ou remove o país dos favoritos
+            checkbox.addEventListener('change', function() {
+                let favorites = getFavorites();
+
+                if (this.checked) {
+                    favorites.push(countryData.name.common);
+                } else {
+                    favorites = favorites.filter(fav => fav !== countryData.name.common);
+                }
+
+                saveFavorites(favorites); // Salva os favoritos no localStorage
+            });
         } else {
             console.error(`Erro ao buscar dados do país ${country}: ${xhr.statusText}`);
         }
@@ -46,77 +83,3 @@ countries.forEach(country => {
 
     xhr.send();
 });
-*/
-$(document).ready(function() {
-    
-    // Requisição para obter todos os países da API
-    const apiUrl = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags';
-  
-    // Função para preencher os cards com base na pesquisa
-    function fillCards(countries) {
-      const cardsContainer = $('#cards-container');
-      cardsContainer.empty(); // Limpa os cards existentes
-  
-      if (countries.length === 0) {
-        cardsContainer.append('<p>Nenhum país encontrado.</p>');
-      } else {
-        countries.forEach(country => {
-          const card = `
-            <div class="col">
-              <div class="card h-100">
-                <img src="${country.flags.png}" class="card-img-top" alt="Flag of ${country.name.official}">
-                <div class="card-body">
-                  <h5 class="card-title">${country.name.official}</h5>
-                  <p class="card-text">Capital: ${country.capital ? country.capital[0] : 'N/A'}</p>
-                  <p class="card-text">Moeda: ${country.currencies ? Object.values(country.currencies)[0].name : 'N/A'}</p>
-                </div>
-              </div>
-            </div>
-          `;
-          cardsContainer.append(card);
-        });
-      }
-    }
-  
-    // Função para buscar os países na API
-    function searchInAPI(query) {
-      console.log("Buscando países para a pesquisa:", query); // Log de depuração
-  
-      $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        success: function(data) {
-          console.log("Dados recebidos da API:", data); // Log para verificar se os dados estão chegando
-  
-          // Filtra os dados da API com base na pesquisa
-          const filteredCountries = data.filter(country => {
-            const nameMatch = country.name.official.toLowerCase().includes(query);
-            const capitalMatch = country.capital && country.capital[0].toLowerCase().includes(query);
-            const currencyMatch = country.currencies && Object.values(country.currencies)[0].name.toLowerCase().includes(query);
-            return nameMatch || capitalMatch || currencyMatch;
-          });
-  
-          fillCards(filteredCountries); // Preenche os cards com os dados filtrados
-        },
-        error: function(xhr, status, error) {
-          console.error("Erro na requisição:", status, error); // Log de erro
-          alert('Erro ao buscar na API.');
-        }
-      });
-    }
-  
-    // Evento do formulário de pesquisa
-    $('#search').on('input', function() {
-      const query = $(this).val().trim().toLowerCase();
-  
-      // Se o campo de pesquisa estiver vazio, exibe todos os países da API
-      if (query === '') {
-        searchInAPI('');
-      } else {
-        searchInAPI(query);
-      }
-    });
-  
-    // Inicializa a busca com todos os países da API ao carregar a página
-    searchInAPI('');
-  });
