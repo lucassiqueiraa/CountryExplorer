@@ -1,91 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" href="assets/styles/navbar.css">
-        <!-- Css da página styles/index.css -->
-        <link rel="stylesheet" href="assets/styles/index.css">
-    </head>
-    </head>
-    <body>
-        <!-- Navbar -->
-         <div id="navbar"></div>
-            
-         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicadores do Carrossel -->
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-          
-            <!-- Itens do Carrossel -->
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;"> <!-- 80% da altura -->
-                  <div class="d-flex flex-column d-inline-block text-center">
-                    <h1 class="mb-5">Descobre o Japão</h1>
-                    <p>
-                      Faz uma viagem pelos destinos mais deslumbrantes do mundo. Das ruas vibrantes de Nova Iorque às antigas ruínas de Roma, cada imagem revela um lugar à espera de ser explorado.
-                    </p>
-                    <p class="mb-5">Quer seja para aventura, relaxamento ou descoberta, encontra o teu próximo destino connosco.</p>
-                    <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
-                  </div>
-                  <img src="assets/images/imgJapao.png" class="d-block" alt="imagem ponto turistico do japão">
-                </div>
-              </div>
-              <!-- Adicione outros itens do carrossel conforme necessário -->
-              <div class="carousel-item">
-                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
-                  <div class="d-flex flex-column d-inline-block text-center">
-                    <h1 class="mb-5">Descobre a Australia</h1>
-                    <p>
-                        Descobre a vibrante Grande Barreira de Coral, a famosa Ópera de Sydney e o vasto Outback.
-                    </p>
-                    <p class="mb-5">
-                        A Austrália oferece uma vida selvagem única, costas ensolaradas e paisagens diversificadas.
-                    </p>
-                    <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
-                  </div>
-                  <img src="assets/images/operaSidney.png" class="d-block w-25" alt="imagem ponto turistico dos EUA">
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
-                  <div class="d-flex flex-column d-inline-block text-center">
-                    <h1 class="mb-5">Visite Roma</h1>
-                    <p>
-                      Mergulhe na história antiga da Roma imperial enquanto explora seus monumentos e ruas.
-                    </p>
-                    <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
-                  </div>
-                  <img src="assets/images/coliseuRoma.webp" class="d-block w-50" alt="imagem ponto turistico de Roma">
-                </div>
-              </div>
-            </div>
-          
-            <!-- Botões de navegação (anterior e próximo) -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" href="assets/styles/navbar.css">
+    <!-- Css da página styles/index.css -->
+    <link rel="stylesheet" href="assets/styles/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+    
+    <!-- Carrossel com efeito de fade -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!-- Indicadores do Carrossel -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
 
-         <!-- Carregar o Footer dinamicamente -->
-        <div id="footer-placeholder"></div>
+        <!-- Itens do Carrossel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+                    <div class="d-flex flex-column d-inline-block text-center">
+                        <h1 class="mb-5">Descobre o Japão</h1>
+                        <p>
+                            Faz uma viagem pelos destinos mais deslumbrantes do mundo. Das ruas vibrantes de Nova Iorque às antigas ruínas de Roma, cada imagem revela um lugar à espera de ser explorado.
+                        </p>
+                        <p class="mb-5">Quer seja para aventura, relaxamento ou descoberta, encontra o teu próximo destino connosco.</p>
+                        <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                    </div>
+                    <img src="assets/images/imgJapao.png" class="d-b2<lock" alt="imagem ponto turistico do japão">
+                </div>
+            </div>
+            <!-- Outros slides -->
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+                    <div class="d-flex flex-column d-inline-block text-center">
+                        <h1 class="mb-5">Descobre a Australia</h1>
+                        <p>Descobre a vibrante Grande Barreira de Coral, a famosa Ópera de Sydney e o vasto Outback.</p>
+                        <p class="mb-5">A Austrália oferece uma vida selvagem única, costas ensolaradas e paisagens diversificadas.</p>
+                        <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                    </div>
+                    <img src="assets/images/operaSidney.png" class="d-block w-25" alt="imagem ponto turistico dos EUA">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+                    <div class="d-flex flex-column d-inline-block text-center">
+                        <h1 class="mb-5">Visite Roma</h1>
+                        <p>Mergulhe na história antiga da Roma imperial enquanto explora seus monumentos e ruas.</p>
+                        <a href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                    </div>
+                    <img src="assets/images/coliseuRoma.webp" class="d-block w-50" alt="imagem ponto turistico de Roma">
+                </div>
+            </div>
+        </div>
 
-        <!-- Bootstrap JS e navbar.js -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/navbar.js"></script>
-        <script src="js/footer.js"></script>
-        <script src="js/home.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    </body>
+        <!-- Botões de navegação (anterior e próximo) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Carregar o Footer dinamicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS e navbar.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/home.js"></script>
+</body>
 </html>
