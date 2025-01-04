@@ -50,7 +50,7 @@ body {
 }
 /*configuração do carrossel*/
 .carousel-item {
-  min-height: 80vh;
+  min-height: 60vh;  /* Diminuir a altura do carrossel para 60% da altura da janela */
   transition: background-color 1.5s ease-in-out; /* Transição suave para o fundo */
 }
 
@@ -66,13 +66,13 @@ body {
 
 .carousel-item h1 {
   max-width: 700px;
-  font-size: 7.6rem;
+  font-size: 5.6rem;  /* Ajuste o tamanho do título se necessário */
   text-align: left;
 }
 
 .carousel-item p {
   max-width: 700px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;  /* Ajuste o tamanho do texto se necessário */
   text-align: left;
 }
 
@@ -84,7 +84,6 @@ body {
 .carousel-item:nth-child(1) {
   background-color: var(--bg-primary);
 }
-
 
 .carousel-item:nth-child(2) {
   background-color: var(--bg-primary); 
@@ -99,7 +98,6 @@ body {
   background-color: gray; 
   border-radius: 50%; 
 }
-
 
 .carousel-item .carousel-caption {
   visibility: hidden;
