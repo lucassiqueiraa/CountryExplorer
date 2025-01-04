@@ -5,6 +5,13 @@ O objetivo deste projeto é consolidar os conhecimentos adquiridos na unidade cu
 
 O projeto também cumpre os requisitos funcionais estabelecidos na unidade curricular de **Introdução à Análise e Projeto de Sistemas de Informação (IAPSI)**, com a integração da API **REST Countries** para fornecer dados sobre os países.
 
+## Grupo 
+- Lucas Emanuel Santos Siqueira - 2231435
+- Altamir Rodrigues - 2232360
+
+## Link repositório
+- https://github.com/lucassiqueiraa/CountryExplorer
+
 ## 2. Cenário
 O portal tem como objetivo proporcionar uma plataforma para que os utilizadores possam:
 - Conhecer os países existentes no mundo.
