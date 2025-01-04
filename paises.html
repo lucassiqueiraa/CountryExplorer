@@ -10,9 +10,8 @@
         <link rel="stylesheet" href="assets/styles/paises.css">
     </head>
     <body class="d-flex flex-column min-vh-100">  <!-- Classe flex para garantir que o conteúdo ocupe a tela inteira -->
-        <!-- Navbar -->
+        <!-- Aqui tem o Navbar -->
         <div id="navbar"></div>
-
         <div class="container mt-5">
             <h1>Escolha o País</h1>
             <p>Escolha um destino para explorar a sua singularidade, cultura e atrações.</p>
@@ -24,73 +23,12 @@
         <!-- Os cards serão gerados dinamicamente aqui -->
     </div>
 </div>
-
         <!-- Carregar o Footer dinamicamente -->
         <div id="footer-placeholder"></div>
-
         <!-- Bootstrap JS e navbar.js -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/navbar.js"></script>
-
-        <!-- Script para carregar o footer -->
-        <script>
-            document.getElementById("footer-placeholder").innerHTML = fetch("footer.html")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("footer-placeholder").innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar o footer: ', error);
-                });
-        </script> 
-         <!-- Script para preencher os cards -->
-         <script>
-            const countries = ["deutschland", "france", "italy", "brazil", "portugal", "spain"]; // Lista de países a serem exibidos
-            const cardsContainer = document.getElementById("cards-container");
-        
-            countries.forEach(country => {
-                fetch(`https://restcountries.com/v3.1/name/${country}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const countryData = data[0]; // Primeiro resultado da API
-        
-                        // Obter o código da moeda do país
-                        const currencyCode = Object.keys(countryData.currencies)[0];
-                        const currencyName = countryData.currencies[currencyCode]?.name;
-        
-                        // Adicionar a moeda ao card
-                        fetch(`https://restcountries.com/v3.1/currency/${currencyCode}`)
-                            .then(currencyResponse => currencyResponse.json())
-                            .then(currencyData => {
-                                const currencyCountryData = currencyData[0]; // Informações sobre a moeda
-                                const cardHTML = `
-                                    <div class="col">
-                                        <div class="card h-100">
-                                            <img src="${countryData.flags.svg}" class="card-img-top" alt="Bandeira de ${countryData.name.common}">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${countryData.name.common}</h5>
-                                                <p class="card-text">
-                                                    Capital: ${countryData.capital ? countryData.capital[0] : 'N/A'}<br>
-                                                    Região: ${countryData.region}<br>
-                                                    Moeda: ${currencyName} (${currencyCode})
-                                                </p>
-                                            </div>
-                                            <div class="card-footer">
-                                                <small class="text-body-secondary">População: ${countryData.population.toLocaleString()}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-                                cardsContainer.innerHTML += cardHTML;
-                            })
-                            .catch(error => {
-                                console.error(`Erro ao buscar dados da moeda ${currencyCode}:`, error);
-                            });
-                    })
-                    .catch(error => {
-                        console.error(`Erro ao buscar dados do país ${country}:`, error);
-                    });
-            });
-        </script>
+        <script src="js/footer.js"></script>
+        <script src="js/fillCards.js"></script>
     </body>
 </html>
