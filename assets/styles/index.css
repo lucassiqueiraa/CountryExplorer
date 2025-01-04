@@ -6,7 +6,12 @@
 html {
   font-size: 62.5%;
 }
-
+/* Garante que a página tenha altura mínima de 100% da tela */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+}
 body {
   display: flex;
   flex-direction: column;
@@ -17,8 +22,33 @@ body {
   flex: 1;
 }
 
+/*Navbar, configuração */
+/* Ajuste do tamanho da navbar */
+.navbar {
+  padding: 1rem 2rem;  /* Aumentar o padding para dar mais altura */
+}
 
+/* Ajustando o tamanho da fonte dos links da navbar */
+.navbar-nav .nav-link {
+  font-size: 1.6rem;  /* Tamanho maior para os links */
+  padding: 0.8rem 1rem;  /* Aumentando o padding nos links */
+}
 
+/* Ajustando o logo para maior altura */
+.navbar-brand img {
+  height: 40px;  /* Aumenta a altura do logo */
+}
+
+/* Ajustando a altura e o comportamento da navbar em telas pequenas */
+@media (max-width: 768px) {
+  .navbar {
+      padding: 0.8rem 1rem;  /* Reduz um pouco o padding em telas pequenas */
+  }
+  .navbar-nav .nav-link {
+      font-size: 1.4rem;  /* Tamanho menor dos links em telas pequenas */
+  }
+}
+/*configuração do carrossel*/
 .carousel-item {
   min-height: 80vh;
   transition: background-color 1.5s ease-in-out; /* Transição suave para o fundo */
