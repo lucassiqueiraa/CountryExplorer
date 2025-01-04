@@ -1,11 +1,78 @@
-/* Garante que a página tenha altura mínima de 100% da tela */
+:root{
+    --bg-primary: #D9D9D9 ;
+    
+}
+
+html {
+    font-size: 62.5%;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+    min-height: 100vh; 
+    
 }
 
-/* O conteúdo da página deve ocupar o espaço disponível até o footer */
+
 .container {
     flex: 1; /* Isso faz o conteúdo ocupar o espaço restante */
 }
+
+
+
+.text-container {
+    padding-right: 30px;
+    text-align: left;
+  }
+  
+  
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgb(111, 111, 111); 
+    border-radius: 50%; 
+  }
+  
+  
+  /* Ajustar a altura do carrossel para 80% da altura da tela */
+.carousel-item {
+    min-height: 80vh; /* Faz o carrossel ocupar 80% da altura da tela */
+    background-color: var(--bg-primary);
+  }
+  
+  /* Ajustes para centralizar o conteúdo do carrossel */
+  .carousel-item .d-flex {
+    display: flex;
+    align-items: center;  /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+  }
+  
+  .carousel-item .d-inline-block {
+    max-width: 650px; /* Limita a largura do conteúdo */
+  }
+  
+  .carousel-item h1 {
+    max-width: 700px;
+    font-size: 7.6rem;
+    text-align: left;
+  }
+
+  .carousel-item p {
+    max-width: 700px;
+    font-size: 1.6rem;
+    text-align: left;
+  }
+
+  
+  /* Ajuste para o botão "Explorar" */
+  .carousel-item .btn-outline-primary {
+    padding: 15px 30px; /* Torna o botão um pouco mais largo */
+  }
+  
+  /* Remover fundo nos botões de navegação e manter as setas azuis */
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: gray; /* Define a cor azul para as setas */
+    border-radius: 50%; /* Torna as setas arredondadas */
+  }
+  
+ 
