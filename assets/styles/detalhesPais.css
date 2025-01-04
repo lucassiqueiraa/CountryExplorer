@@ -3,20 +3,19 @@ body{
   padding: 0;
   box-sizing: border-box;
 }
-/* Estilo geral da tabela */
+
 .tabelaDetalhes {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa; /* Cor de fundo leve */
+  background-color: #f8f9fa; 
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Cabeçalho da tabela */
 .tabelaDetalhes  th {
-  background-color: #007bff; /* Azul claro */
+  background-color: #007bff; 
   color: white;
   padding: 12px 15px;
   font-size: 16px;
@@ -24,7 +23,7 @@ body{
   text-align: center;
 }
 
-/* Corpo da tabela */
+
 .tabelaDetalhes  td {
   text-align: center;
   padding: 10px 15px;
@@ -33,31 +32,27 @@ body{
   color: #333;
 }
 
-/* Efeito de hover nas linhas da tabela */
+
 .tabelaDetalhes  tr:hover {
   background-color: #f1f1f1;
   cursor: pointer;
 }
 
 
-/* Linhas alternadas */
 .tabelaDetalhes  tr:nth-child(odd) {
-  background-color: #f9f9f9; /* Cor de fundo mais clara nas linhas ímpares */
+  background-color: #f9f9f9; 
 }
 
-/* Adicionando uma borda fina à tabela */
 .tabelaDetalhes  {
   border: 1px solid #ddd;
 }
 
-/* Melhorando o aspecto da imagem da bandeira */
 .tabelaDetalhes  img {
   width: 20%;
   height: auto;
   border-radius: 5px;
 }
 
-/* Estilo de um ícone ao lado do texto */
 .tabelaDetalhes  th i, .table td i {
   margin-right: 8px;
   font-size: 18px;
@@ -73,26 +68,25 @@ h1{
   margin-top: 30px;
   
 }
-/* Garante que o body ocupe toda a altura da tela */
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column; /* Permite que o conteúdo e o footer sejam empilhados */
-  min-height: 100vh; /* Altura mínima da página é 100% da altura da janela */
+  flex-direction: column;
+  min-height: 100vh; 
 }
 
-/* O container ocupa o espaço restante */
+
 .container {
-  flex: 1; /* Faz com que o container preencha o espaço restante */
+  flex: 1; 
 }
 
-/* Footer Styling */
 footer {
   background-color: #007bff;
   color: white;
   text-align: center;
   padding: 10px 0;
-  margin-top: auto; /* Garante que o footer fique sempre no final da página */
+  margin-top: auto;
 }

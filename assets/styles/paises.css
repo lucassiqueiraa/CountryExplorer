@@ -12,32 +12,36 @@ body {
     margin-bottom: 20px;
 }
 
-/* Estilo dos cards */
+.search-container input{
+    padding: 15px;
+}
+
 .country-card {
-    width: 18rem;
-    height: 100%; /* Garante que o card ocupe o espaço disponível */
+    width: 20rem;
+    height: 100%; 
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    
     
 }
 
-/* Estilo da imagem dentro do card */
+
 .country-card img {
     width: 100%; 
-    height: 150px; /* Limita a altura da imagem */
-    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorcer */
+    height: 150px; 
+    object-fit: cover; 
 }
 
-/* Estilo do corpo do card */
+
 .country-card .card-body {
-    flex-grow: 1; /* Faz com que o corpo do card ocupe o espaço restante */
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-/* Estilo do botão dentro do card */
+
 .country-card .btn {
-    width: 100%; /* Faz com que o botão ocupe toda a largura do card */
+    width: 100%;
 }

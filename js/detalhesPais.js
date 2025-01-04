@@ -1,22 +1,16 @@
 $(document).ready(function() {
-  // Requisição para obter todos os países da API
   $.ajax({
-    url: 'https://restcountries.com/v3.1/all', // API que retorna todos os países
+    url: 'https://restcountries.com/v3.1/all', 
     method: 'GET',
     success: function(countries) {
-      // Escolhe um país aleatório da lista de países
       var randomCountry = countries[Math.floor(Math.random() * countries.length)];
-      
-      // Obtém o código do país (CCA3 ou alpha3)
       var countryCode = randomCountry.cca3;
-
-      // Atualiza o link "Ver Detalhes de um País Aleatório" com o código do país aleatório
       var randomLink = `detalhesPais.html?country=${countryCode}`;
+
       $('#randomCountryLink').attr('href', randomLink);
 
-      // Atualiza o comportamento do botão para redirecionar para a página de detalhes
       $('#randomCountryLink').on('click', function(event) {
-        window.location.href = randomLink; // Redireciona para a página de detalhes com o código do país
+        window.location.href = randomLink; 
       });
     },
     error: function(err) {
@@ -27,19 +21,16 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-  // Lê o código do país da URL (parâmetro `country`)
   var countryCode = new URLSearchParams(window.location.search).get('country');
 
-  // Se tiver o código do país, carrega os dados
   if (countryCode) {
-    // Busca os detalhes do país usando a API
     $.ajax({
       url: `https://restcountries.com/v3.1/alpha/${countryCode}`,
       method: "GET",
       success: function(data) {
         var country = data[0];
-        var table = generateCountryTable(country); // Gera a tabela com os detalhes
-        $('#country-details').html(table); // Insere a tabela no HTML
+        var table = generateCountryTable(country); 
+        $('#country-details').html(table); 
       },
       error: function(err) {
         console.log("Erro ao carregar os detalhes do país:", err);
@@ -50,7 +41,6 @@ $(document).ready(function() {
   }
 });
 
-// Função que gera a tabela com os detalhes do país
 function generateCountryTable(country) {
   return `
       <h1>${country.name.official}</h1>

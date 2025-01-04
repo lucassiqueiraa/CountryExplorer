@@ -6,52 +6,43 @@
 html {
   font-size: 62.5%;
 }
-/* Garante que a página tenha altura mínima de 100% da tela */
+
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; 
 }
 
 .container {
   flex: 1;
 }
 
-/*Navbar, configuração */
-/* Ajuste do tamanho da navbar */
+
 .navbar {
-  padding: 1rem 2rem;  /* Aumentar o padding para dar mais altura */
+  padding: 1rem 2rem;  
 }
 
-/* Ajustando o tamanho da fonte dos links da navbar */
 .navbar-nav .nav-link {
-  font-size: 1.6rem;  /* Tamanho maior para os links */
-  padding: 0.8rem 1rem;  /* Aumentando o padding nos links */
+  font-size: 1.6rem;  
+  padding: 0.8rem 1rem;  
 }
 
-/* Ajustando o logo para maior altura */
 .navbar-brand img {
-  height: 40px;  /* Aumenta a altura do logo */
+  height: 40px;  
 }
 
-/* Ajustando a altura e o comportamento da navbar em telas pequenas */
 @media (max-width: 768px) {
   .navbar {
-      padding: 0.8rem 1rem;  /* Reduz um pouco o padding em telas pequenas */
+      padding: 0.8rem 1rem;  
   }
   .navbar-nav .nav-link {
-      font-size: 1.4rem;  /* Tamanho menor dos links em telas pequenas */
+      font-size: 1.4rem;  
   }
 }
-/*configuração do carrossel*/
+
 .carousel-item {
-  min-height: 60vh;  /* Diminuir a altura do carrossel para 60% da altura da janela */
-  transition: background-color 1.5s ease-in-out; /* Transição suave para o fundo */
+  min-height: 60vh;  
+  transition: background-color 1.5s ease-in-out; 
 }
 
 .carousel-item .d-flex {
@@ -66,13 +57,13 @@ body {
 
 .carousel-item h1 {
   max-width: 700px;
-  font-size: 5.6rem;  /* Ajuste o tamanho do título se necessário */
+  font-size: 5.6rem;
   text-align: left;
 }
 
 .carousel-item p {
   max-width: 700px;
-  font-size: 1.4rem;  /* Ajuste o tamanho do texto se necessário */
+  font-size: 1.4rem; 
   text-align: left;
 }
 
@@ -80,7 +71,6 @@ body {
   padding: 15px 30px; 
 }
 
-/* Remover o fundo no primeiro slide */
 .carousel-item:nth-child(1) {
   background-color: var(--bg-primary);
 }
@@ -105,4 +95,192 @@ body {
 
 .carousel-item.active .carousel-caption {
   visibility: visible;
+}
+
+ul li{
+  margin-right: 4.4rem;
+}
+
+.btn-outline{
+  border: 1px solid #1559B7;
+  color:#1559B7;
+  padding:12px;
+  font-size:1.6rem;
+  font-weight: 600;
+}
+
+.btn-outline:hover{
+  border: 1px solid #1559B7;
+  color:#fff;
+  background-color: #1559B7;
+  
+}
+
+.countries-section {
+  background-color: #f8f9fa; 
+  padding: 50px 0;
+}
+
+.countries-section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.countries-section p {
+  font-size: 1.4rem;
+  color: #555;
+}
+
+.country-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.country-card:hover {
+  transform: translateY(-10px);
+}
+
+.country-card img {
+  height: 250px; 
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.country-card .card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.country-card .card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.country-card .btn-outline-primary {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid #1559B7;
+  color: #1559B7;
+  font-weight: 600;
+}
+
+.country-card .btn-outline-primary:hover {
+  background-color: #1559B7;
+  color: white;
+}
+
+#countries-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+.explore-section {
+  background-image: url('/assets/images/midtown-atlanta-skyline-from-park-usa.png'); 
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  position: relative;
+  height: 445px;
+  z-index: 1;
+}
+
+.explore-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: -1; 
+}
+
+/* Título da seção */
+.explore-section h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  z-index: 2;
+  position: relative;
+  color: white; 
+}
+
+
+.explore-section p {
+  font-size: 1.6rem;
+  color: white; 
+  z-index: 2;
+  position: relative;
+}
+
+.explore-section .btn-outline-light {
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  z-index: 2;
+  position: relative;
+}
+
+.explore-section .btn-outline-light:hover {
+  background-color: #fff;
+  color: #1559B7;
+}
+
+
+.team-section {
+  padding: 60px 0;
+  background-color: #f8f9fa; 
+}
+
+.team-section .card {
+  border: none; 
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.team-section .card:hover {
+  transform: scale(1.05); 
+}
+
+.team-section .card-img-top {
+  height: 320px;
+  object-fit: cover; 
+  border-radius: 10px 10px 0 0;
+}
+
+.team-section .card-body {
+  padding: 20px;
+}
+
+.team-section .card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.team-section .card-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.team-section .btn {
+  padding: 8px 20px;
+  font-size: 1.2rem;
+}
+
+.team-section h1{
+  font-size: 5.6rem;
+  font-weight: 600;
 }

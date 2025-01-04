@@ -5,13 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" href="assets/styles/navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Css da página styles/index.css -->
-    <link rel="stylesheet" href="assets/styles/index.css">
+    <link rel="stylesheet" href="/assets/styles/index.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <div id="navbar"></div>
+    <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <img src="assets/images/logo-ead.png" alt="Logo Marca IPLEIRIA-EAD" weight="40" height="40" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center w-50">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/paises.html">Países</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/detalhesPais.html">Detalhes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/favoritos.html">Favoritos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline" href="/pages/contacto.html">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
     <!-- Carrossel com efeito de fade -->
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -34,9 +61,9 @@
 Quer você busque aventura nas trilhas da natureza, relaxamento nas águas termais ou uma imersão na cultura única, o Japão é o lugar perfeito para a sua próxima viagem. Venha viver o Japão!
                         </p>
                         <p class="mb-5">Quer seja para aventura, relaxamento ou descoberta, encontra o teu próximo destino connosco.</p>
-                        <a id="explorerJapan"  href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                        <a id="explorerJapan"  href="pages/detalhesPais.html?country=JPN" class="btn btn-outline-primary w-25">Explorar</a>
                     </div>
-                    <img src="assets/images/imgJapao.png" class="d-b2<lock" alt="imagem ponto turistico do japão">
+                    <img src="assets/images/imgJapao.png" class="d-block" alt="imagem ponto turistico do japão">
                 </div>
             </div>
             <!-- Outros slides -->
@@ -50,7 +77,7 @@ Quer você busque aventura nas trilhas da natureza, relaxamento nas águas terma
                             
                             Seja para explorar, relaxar ou se aventurar, a Austrália é o lugar perfeito para criar memórias inesquecíveis. A jornada começa aqui!</p>
                         <p class="mb-5">A Austrália oferece uma vida selvagem única, costas ensolaradas e paisagens diversificadas.</p>
-                        <a id="explorerAustralia" href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                        <a id="explorerAustralia" href="pages/detalhesPais.html?country=AUS" class="btn btn-outline-primary w-25">Explorar</a>
                     </div>
                     <img src="assets/images/operaSidney.png" class="d-block w-25" alt="imagem ponto turistico dos EUA">
                 </div>
@@ -64,7 +91,7 @@ Quer você busque aventura nas trilhas da natureza, relaxamento nas águas terma
                             Delicie-se com a autêntica comida italiana, explore os vinhedos da Toscana, relaxe nas praias da Costa Amalfitana e viva a paixão vibrante de cidades como Milão e Nápoles. A Itália é o lugar onde a arte, a história e a beleza natural se unem para criar memórias inesquecíveis.
                             
                             Venha viver a magia da Itália e descobrir o charme de um dos destinos mais amados do mundo. Sua aventura começa aqui!</p>
-                        <a id="explorerItaly"  href="#" class="btn btn-outline-primary w-25">Explorar</a>
+                        <a id="explorerItaly"  href="pages/detalhesPais.html?country=ITA" class="btn btn-outline-primary w-25">Explorar</a>
                     </div>
                     <img src="assets/images/coliseuRoma.webp" class="d-block w-50" alt="imagem ponto turistico de Roma">
                 </div>
@@ -82,13 +109,165 @@ Quer você busque aventura nas trilhas da natureza, relaxamento nas águas terma
         </button>
     </div>
 
-    <!-- Carregar o Footer dinamicamente -->
-    <div id="footer-placeholder"></div>
+    <section class="countries-section">
+        <div class="container">
+          <!-- Título da seção -->
+          <h1 class="text-center my-5">Escolha o País</h1>
+      
+          <!-- Descrição sobre os países -->
+          <p class="text-center mb-5">
+            Escolha um destino para explorar a sua singularidade, cultura e atrações. Descubra os lugares mais cativantes do mundo, cada um oferecendo experiências inesquecíveis.
+          </p>
+      
+          <!-- Cards dos países -->
+          <div class="row" id="countries-list">
+            <!-- Card 1 -->
+            <div class="col-md-3 col-sm-6">
+              <div class="card country-card">
+                <img src="assets/images/flagEua.png" class="card-img-top" alt="Bandeira dos Estados Unidos">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Estados Unidos da América</h5>
+                  <a href="pages/detalhesPais.html?country=USA" class="btn btn-primary w-100">Explorar</a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 2 -->
+            <div class="col-md-3 col-sm-6">
+              <div class="card country-card">
+                <img src="assets/images/flag-canada.png" class="card-img-top" alt="Bandeira do Canadá">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Canadá</h5>
+                  <a href="pages/detalhesPais.html?country=CAN" class="btn btn-primary w-100">Explorar</a>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 3 -->
+            <div class="col-md-3 col-sm-6">
+              <div class="card country-card">
+                <img src="assets/images/flagEngland.png" class="card-img-top" alt="Bandeira do Reino Unido">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Reino Unido</h5>
+                  <a href="pages/detalhesPais.html?country=GBR" class="btn btn-primary w-100">Explorar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Bootstrap JS e navbar.js -->
+      <section class="explore-section">
+        <div class="container">
+          <!-- Título da seção -->
+          <h2 class="text-center text-white my-5">Explora O Mundo Connosco</h2>
+      
+          <!-- Descrição sobre os destinos -->
+          <p class="text-center text-white mb-5">
+            Embarca numa aventura para descobrir os destinos mais cativantes do mundo, desde paisagens urbanas vibrantes até serrenas maravilhas naturais. Explora o encanto único de cada país, rico em cultura, história e experiências inesquecíveis. Deixa-nos ser o teu guia até lugares que inspiram e despertam o espírito de exploração. Em cada viagem, descobre novas perspetivas e recursos escondidos à espera de serem revelados. Começa a tua aventura hoje e cria memórias que durarão para toda a vida.
+          </p>
+      
+          <!-- Botão explorar -->
+          <div class="text-center">
+            <a href="#" class="btn btn-outline-light w-25">Explorar</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="team-section">
+        <div class="container">
+            <h1 class="text-center my-5">Nossa Equipe</h1>
+            <div class="d-flex justify-content-around">
+                <!-- Card 1 -->
+                <div class="col-md-4 col-sm-12 ">
+                    <div class="card team-card">
+                        <img src="assets/images/Altamir-foto.jpg" class="card-img-top" alt="João Lopes">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Altamir Rodrigues</h5>
+                            <p class="card-text">Estudante</p>
+                            <a href="https://github.com/BarbaGrisalha" target="_blank" class="btn btn-outline-primary">Mais Informações</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Card 2 -->
+                <div class="col-md-4 col-sm-12">
+                    <div class="card team-card">
+                        <img src="assets/images/Lucas-foto.jpeg" class="card-img-top" alt="António">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Lucas Siqueira</h5>
+                            <p class="card-text">Estudante</p>
+                            <a href="https://github.com/lucassiqueiraa " target="_blank" class="btn btn-outline-primary">Mais Informações</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <footer class="bg-light text-black pt-4 pb-3">
+        <div class="container">
+            <!-- Logo no footer -->
+            <div class="row justify-content-center mb-3">
+                <div class="col text-center">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="/assets/images/logo-ead.png" alt="Logo Marca IPLEIRIA-EAD" width="150" height="100" class="d-inline-block align-text-top">
+                    </a>
+                </div>
+            </div>
+    
+            <!-- Links do Menu -->
+            <div class="row justify-content-center mb-3">
+                <div class="col text-center">
+                    <ul class="list-unstyled d-flex justify-content-center">
+                        <li><a href="index.html" class="text-black mx-3">Home</a></li>
+                        <li><a href="./paises.html" class="text-black mx-3">Países</a></li>
+                        <li><a href="./detalhesPais.html" class="text-black mx-3">Detalhes</a></li>
+                        <li><a href="./favoritos.html" class="text-black mx-3">Favoritos</a></li>
+                        <li><a href="./contacto.html" class="text-black mx-3">Contactos</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Redes Sociais -->
+            <div class="row justify-content-center">
+                <div class="col text-center">
+                    <ul class="list-unstyled d-flex justify-content-center">
+                        <li>
+                            <a href="https://www.linkedin.com" class="text-black" target="_blank">
+                                <img src="/assets/images/linkedin.png" alt="Linkedin" style="width: 24px; height: 24px;">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com" class="text-black" target="_blank">
+                                <img src="/assets/images/facebook.jpg" alt="Facebook" style="width: 24px; height: 24px;">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com" class="text-black" target="_blank">
+                                <img src="/assets/images/instagram.jpg" alt="Instagram" style="width: 24px; height: 24px;">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://x.com" class="text-black" target="_blank">
+                                <img src="/assets/images/redeX.png" alt="X" style="width: 24px; height: 24px;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Linha de separação -->
+            <hr class="text-white">
+    
+            <!-- Direitos de Autor -->
+            <div class="text-center">
+                <p>&copy; 2025 Direitos de Autor, Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/footer.js"></script>
-    <script src="js/index.js"></script>
+    
 </body>
 </html>
