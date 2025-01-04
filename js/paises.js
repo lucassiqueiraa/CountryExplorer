@@ -13,6 +13,11 @@ $(document).ready(function () {
                         name: country.name.common,
                         code: country.cca3,
                         imageUrl: country.flags.png, // Imagem da bandeira
+                        capital: country.capital ? country.capital[0] : 'N/A', // Capital
+                        population: country.population, // População
+                        region: country.region, // Região
+                        language: country.languages ? Object.values(country.languages).join(', ') : 'N/A', // Idiomas
+                        currency: country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A' // Moeda
                     };
                     countries.push(countryData); // Adiciona ao array de países
                 });
@@ -38,6 +43,11 @@ $(document).ready(function () {
                         <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
                         <div class="card-body">
                             <h5 class="card-title">${country.name}</h5>
+                            <p><strong>Capital:</strong> ${country.capital}</p>
+                            <p><strong>População:</strong> ${country.population}</p>
+                            <p><strong>Região:</strong> ${country.region}</p>
+                            <p><strong>Idioma:</strong> ${country.language}</p>
+                            <p><strong>Moeda:</strong> ${country.currency}</p>
                             <button class="btn favorite-btn ${buttonClass} ${isFavorite ? 'btn-danger' : 'btn-success'}" data-country-code="${country.code}">
                                 ${isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
                             </button>
@@ -90,6 +100,11 @@ $(document).ready(function () {
                         <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
                         <div class="card-body">
                             <h5 class="card-title">${country.name}</h5>
+                            <p><strong>Capital:</strong> ${country.capital}</p>
+                            <p><strong>População:</strong> ${country.population}</p>
+                            <p><strong>Região:</strong> ${country.region}</p>
+                            <p><strong>Idioma:</strong> ${country.language}</p>
+                            <p><strong>Moeda:</strong> ${country.currency}</p>
                             <button class="btn favorite-btn btn-danger" data-country-code="${country.code}">
                                 Remover dos Favoritos
                             </button>

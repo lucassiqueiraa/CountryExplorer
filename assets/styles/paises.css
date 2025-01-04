@@ -12,19 +12,32 @@ body {
     margin-bottom: 20px;
 }
 
+/* Estilo dos cards */
 .country-card {
     width: 18rem;
+    height: 100%; /* Garante que o card ocupe o espaço disponível */
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
+    
 }
 
+/* Estilo da imagem dentro do card */
 .country-card img {
     width: 100%; 
-    height: 150px;
-    object-fit: cover; 
-  }
-  
-
-.country-card .btn {
-    width: 100%;
+    height: 150px; /* Limita a altura da imagem */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorcer */
 }
 
+/* Estilo do corpo do card */
+.country-card .card-body {
+    flex-grow: 1; /* Faz com que o corpo do card ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilo do botão dentro do card */
+.country-card .btn {
+    width: 100%; /* Faz com que o botão ocupe toda a largura do card */
+}
