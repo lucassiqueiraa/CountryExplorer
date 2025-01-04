@@ -1,46 +1,83 @@
-// Função para exibir os países favoritos
-function showFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const favoritesContainer = document.getElementById('favorites-container');
+$(document).ready(function () {
+    // Recupera os favoritos do localStorage
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const countries = []; // Array para armazenar os dados dos países
 
-    if (favorites.length === 0) {
-        favoritesContainer.innerHTML = '<p>Nenhum país favorito ainda.</p>';
-    } else {
-        favorites.forEach(countryName => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", `https://restcountries.com/v3.1/name/${countryName}`, true);
-
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    const countryData = data[0];
-
-                    // Criar o card para exibir o país favorito
-                    const cardHTML = `
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="${countryData.flags.svg}" class="card-img-top" alt="Bandeira de ${countryData.name.common}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${countryData.name.common}</h5>
-                                    <p class="card-text">Este é um dos seus países favoritos!</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    favoritesContainer.innerHTML += cardHTML;
-                } else {
-                    console.error(`Erro ao buscar dados do país ${countryName}: ${xhr.statusText}`);
-                }
-            };
-
-            xhr.onerror = function () {
-                console.error("Erro na requisição AJAX");
-            };
-
-            xhr.send();
+    // Função para buscar os detalhes dos países usando a API
+    function loadCountryDetails(code) {
+        $.ajax({
+            url: `https://restcountries.com/v3.1/alpha/${code}`,
+            method: 'GET',
+            success: function (data) {
+                const country = data[0];
+                const countryData = {
+                    name: country.name.common,
+                    code: country.cca3,
+                    imageUrl: country.flags.png,
+                };
+                countries.push(countryData);
+                renderFavorites(); // Renderiza os favoritos
+            },
+            error: function (err) {
+                console.log("Erro ao carregar os dados do país:", err);
+            }
         });
     }
-}
 
-// Exibir os favoritos ao carregar a página
-document.addEventListener('DOMContentLoaded', showFavorites);
+    // Carrega todos os países favoritos do localStorage
+    favorites.forEach(function (favorite) {
+        loadCountryDetails(favorite);
+    });
+
+    // Função para renderizar os favoritos na tela
+    function renderFavorites() {
+        const favoritesList = $('#favorites-list');
+        favoritesList.empty(); // Limpa a lista de favoritos
+
+        countries.forEach(function (country) {
+            const isFavorite = favorites.includes(country.code);
+            const buttonClass = isFavorite ? 'active' : '';
+            const favoriteElement = `
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="card country-card">
+                        <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${country.name}</h5>
+                            <button class="btn ${buttonClass} ${isFavorite ? 'btn-danger' : 'btn-success'}" data-country-code="${country.code}">
+                                ${isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            favoritesList.append(favoriteElement);
+        });
+
+        // Adiciona o evento de clique nos botões de favoritos
+        $(".favorite-btn").each(function () {
+            $(this).on("click", toggleFavorite);
+        });
+    }
+
+    // Função para alternar entre adicionar e remover de favoritos
+    function toggleFavorite(event) {
+        const countryCode = $(event.target).data('country-code');
+
+        // Verifica se o país já está nos favoritos e alterna o estado
+        if (favorites.includes(countryCode)) {
+            // Remove o país dos favoritos
+            favorites = favorites.filter(function (code) {
+                return code !== countryCode;
+            });
+        } else {
+            // Adiciona o país aos favoritos
+            favorites.push(countryCode);
+        }
+
+        // Atualiza os favoritos no localStorage
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        // Re-renderiza a lista de países e favoritos
+        renderFavorites();
+    }
+});

@@ -9,3 +9,20 @@ body {
 .container {
     flex: 1; /* Isso faz o conteúdo ocupar o espaço restante */
 }
+
+.country-card {
+    width: 18rem;
+    margin-bottom: 20px;
+}
+
+.country-card img {
+    width: 100%; 
+    height: 150px;
+    object-fit: cover; 
+  }
+  
+
+.country-card .btn {
+    width: 100%;
+}
+

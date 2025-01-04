@@ -1,85 +1,117 @@
-const countries = ["deutschland", "france", "italy", "brazil", "portugal", "spain"]; // Lista de países
-const cardsContainer = document.getElementById("cards-container");
+$(document).ready(function () {
+    const countries = []; // Array para armazenar os países
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || []; // Favoritos
 
-// Função para salvar os favoritos no localStorage
-function saveFavorites(favorites) {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-}
+    // Função para carregar os países da API com jQuery AJAX
+    function loadCountries() {
+        $.ajax({
+            url: 'https://restcountries.com/v3.1/all', // API com todos os países
+            method: 'GET',
+            success: function (data) {
+                data.forEach(function (country) {
+                    const countryData = {
+                        name: country.name.common,
+                        code: country.cca3,
+                        imageUrl: country.flags.png, // Imagem da bandeira
+                    };
+                    countries.push(countryData); // Adiciona ao array de países
+                });
+                renderCountries(countries); // Renderiza os países na tela
+            },
+            error: function (err) {
+                console.error("Erro ao carregar os países:", err);
+            }
+        });
+    }
 
-// Função para obter os favoritos do localStorage
-function getFavorites() {
-    const favorites = localStorage.getItem('favorites');
-    return favorites ? JSON.parse(favorites) : [];
-}
+    // Função para renderizar os países na tela
+    function renderCountries(countriesToRender) {
+        const countriesList = $("#countries-list");
+        countriesList.empty(); // Limpa a lista de países
 
-// Preenche os cards com os dados dos países
-countries.forEach(country => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `https://restcountries.com/v3.1/name/${country}`, true);
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
-            const countryData = data[0];
-
-            // Obter o código da moeda
-            const currencyCode = Object.keys(countryData.currencies)[0];
-            const currencyName = countryData.currencies[currencyCode]?.name;
-
-            // Criar o card
-            const cardHTML = `
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="${countryData.flags.svg}" class="card-img-top" alt="Bandeira de ${countryData.name.common}">
+        countriesToRender.forEach(function (country) {
+            const isFavorite = favorites.includes(country.code);
+            const buttonClass = isFavorite ? 'active' : '';
+            const countryElement = `
+                <div class="col-md-4 col-sm-6">
+                    <div class="card country-card">
+                        <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
                         <div class="card-body">
-                            <h5 class="card-title">${countryData.name.common}</h5>
-                            <p class="card-text">
-                                Capital: ${countryData.capital ? countryData.capital[0] : 'N/A'}<br>
-                                Região: ${countryData.region}<br>
-                                Moeda: ${currencyName} (${currencyCode})
-                            </p>
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" id="checkbox-${countryData.name.common}">
-                                Favoritar
-                            </label>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">População: ${countryData.population.toLocaleString()}</small>
+                            <h5 class="card-title">${country.name}</h5>
+                           <button class="btn ${buttonClass} ${isFavorite ? 'btn-danger' : 'btn-success'}" data-country-code="${country.code}">
+                                ${isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+                            </button>
                         </div>
                     </div>
                 </div>
             `;
-            cardsContainer.innerHTML += cardHTML;
+            countriesList.append(countryElement);
+        });
 
-            // Configuração do checkbox
-            const checkbox = document.getElementById(`checkbox-${countryData.name.common}`);
-            
-            // Verifica se o país já está nos favoritos
-            const favorites = getFavorites();
-            if (favorites.includes(countryData.name.common)) {
-                checkbox.checked = true;
-            }
+        // Adiciona o evento de clique nos botões de favoritos
+        $(".favorite-btn").each(function () {
+            $(this).on("click", toggleFavorite);
+        });
+    }
 
-            // Adiciona ou remove o país dos favoritos
-            checkbox.addEventListener('change', function() {
-                let favorites = getFavorites();
-
-                if (this.checked) {
-                    favorites.push(countryData.name.common);
-                } else {
-                    favorites = favorites.filter(fav => fav !== countryData.name.common);
-                }
-
-                saveFavorites(favorites); // Salva os favoritos no localStorage
+    // Função para alternar entre adicionar e remover de favoritos
+    function toggleFavorite(event) {
+        const countryCode = $(event.target).data('country-code');
+        if (favorites.includes(countryCode)) {
+            favorites = favorites.filter(function (code) {
+                return code !== countryCode;
             });
         } else {
-            console.error(`Erro ao buscar dados do país ${country}: ${xhr.statusText}`);
+            favorites.push(countryCode);
         }
-    };
 
-    xhr.onerror = function () {
-        console.error("Erro na requisição AJAX");
-    };
+        // Atualiza os favoritos no localStorage
+        localStorage.setItem("favorites", JSON.stringify(favorites));
 
-    xhr.send();
+        // Re-renderiza a lista de países e favoritos
+        renderCountries(countries);
+        renderFavorites();
+    }
+
+    // Função para renderizar os países favoritos
+    function renderFavorites() {
+        const favoritesList = $("#favorites-list");
+        favoritesList.empty();
+
+        const favoriteCountries = countries.filter(function (country) {
+            return favorites.includes(country.code);
+        });
+
+        favoriteCountries.forEach(function (country) {
+            const favoriteElement = `
+                <div class="col-md-4 col-sm-6">
+                    <div class="card country-card">
+                        <img src="${country.imageUrl}" class="card-img-top" alt="Bandeira do ${country.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${country.name}</h5>
+                        </div>
+                    </div>
+                </div>
+            `;
+            favoritesList.append(favoriteElement);
+        });
+    }
+
+    // Função de filtro da pesquisa
+    function filterCountries(event) {
+        const searchTerm = event.target.value.toLowerCase();
+        const filteredCountries = countries.filter(function (country) {
+            return country.name.toLowerCase().includes(searchTerm);
+        });
+        renderCountries(filteredCountries);
+    }
+
+    // Inicializa a renderização dos países
+    loadCountries();
+
+    // Re-renderiza os favoritos
+    renderFavorites();
+
+    // Evento de busca
+    $("#search-input").on('input', filterCountries);
 });
